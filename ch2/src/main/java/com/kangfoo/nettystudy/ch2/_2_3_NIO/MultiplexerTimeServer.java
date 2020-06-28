@@ -34,9 +34,12 @@ public class MultiplexerTimeServer implements Runnable {
             selector = Selector.open();
 
             servChannel = ServerSocketChannel.open();
-            servChannel.configureBlocking(false);  // 设置为异步阻塞模式
-            servChannel.socket().bind(new InetSocketAddress(port), 1024);// 设置 backlog =1024  ， requested maximum length of the queue of incoming connections.
-            servChannel.register(selector, SelectionKey.OP_ACCEPT); // 设置 操作位为 ACCEPT
+            // 设置为异步阻塞模式
+            servChannel.configureBlocking(false);
+            // 设置 backlog =1024  ， requested maximum length of the queue of incoming connections.
+            servChannel.socket().bind(new InetSocketAddress(port), 1024);
+            // 设置 操作位为 ACCEPT
+            servChannel.register(selector, SelectionKey.OP_ACCEPT);
             System.out.println("The time server is start in port : " + port);
         } catch (IOException e) {
             e.printStackTrace();
