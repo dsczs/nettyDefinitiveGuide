@@ -34,11 +34,10 @@ public class TimeServer {
             while (true) {
 
                 socket = server.accept();
-                singleExecutor.execute(new TimeServerHandler(socket));    // 在此处多了个 线程池模型。
-
+                // 在此处多了个 线程池模型。
+                singleExecutor.execute(new TimeServerHandler(socket));
 
             }
-
         } finally {
             if (server != null) {
                 System.out.println("The time server close");
